@@ -109,3 +109,4 @@ export class WelcomeComponent implements OnInit {
       this.message = "delete Successful";
   }
 }
+

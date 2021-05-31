@@ -1,0 +1,115 @@
+<style>
+    .container{
+      max-width: 400px;
+    }
+    input[type=text],
+    input[type=text]:focus{
+      color: #fff;
+      border: none;
+      background: rgba(0,0,0,0.2);
+      max-width: 400px;
+    }
+    .todos li{
+      background: #423a6f;
+    }
+    .delete {
+      cursor: pointer;
+    }
+    .update {
+      cursor: pointer;
+    }
+    .addition {
+      cursor: pointer;
+    }
+    button{
+      background: #423a6f;
+      color: #fff;
+    }
+    .dropdown {
+    position: relative;
+    display: inline-block;
+    
+    }
+    .dropdown-content {
+    text-decoration: none;
+    display: block;
+    
+    }
+    .dropdown-content {
+    display: none;
+    position: absolute;
+    min-width: 80%;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    left: 100%;
+    top: 0;
+    }
+
+    .dropdown:hover .dropdown-content {display: block;}
+
+  </style>
+<div class="container">
+  
+    <header class="text-center text-light my-4">
+      <h1 class="mb-4">Todo List</h1>
+      <div class="alert alert-success" *ngIf='message'>{{message}}</div>
+      <form class="search" id= "filter">
+        <input class="form-control m-auto" type="text" name="search" placeholder="search todos"> 
+        <!-- [(ngModel)] = "SearchText"/> -->
+      </form>
+    </header>
+  
+    <!-- <ul class="list-group todos mx-auto text-light" id="ninja-listing">
+      <li class="list-group-item d-flex justify-content-between align-items-center"
+      *ngFor= "let ninja of resultr">
+       | filter: SearchText" 
+        
+      <span>{{ninja.name}}</span>
+          <div>
+          <i class="far fa-edit update" (click)="dataUpdate(ninja.arrcounter)">&nbsp;&nbsp;</i>
+          <i class="far fa-trash-alt delete" (click)="dataDelete(ninja.arrcounter)"></i>
+          </div>
+      </li>
+      </ul> -->
+      
+        <ul class="list-group todos text-light" id="ninja-listing">
+          <li class="list-group-item dropdown" 
+          *ngFor= "let ninja of resultr" >
+          <!-- | filter: SearchText" -->
+          <div class= "d-flex justify-content-between align-items-center" (mouseover)= "getTodosData(ninja.arrcounter)">
+            <span >{{ninja.name}}</span>
+              <div>
+              <i class="fas fa-plus addition"(click) = "todoAdd(ninja.arrcounter)">&nbsp;&nbsp;</i>
+              <i class="far fa-edit update" (click)="dataUpdate(ninja.arrcounter)">&nbsp;</i>
+              <i class="far fa-trash-alt delete" (click)="dataDelete(ninja.arrcounter)"></i>
+              </div>
+            </div>
+              <div class= "dropdown-content">
+                <ul class="list-group todos text-light">
+                  <li class="list-group-item d-flex justify-content-between align-items-center"
+                    *ngFor = "let ninja of Todoresult">
+                    <span>{{ninja.username}}</span>
+                      <div>
+                        <i class="far fa-edit update" (click)="todoUpdate(ninja.id)">&nbsp;&nbsp;</i>
+                        <i class="far fa-trash-alt delete" (click)="todoDelete(ninja.id)"></i>
+                      </div>
+                  </li>
+                  <!-- <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <span>this</span>
+                      <div>
+                        <i class="far fa-edit update">&nbsp;&nbsp;</i>
+                        <i class="far fa-trash-alt delete"></i>
+                      </div>
+                  </li> -->
+                </ul>
+            </div>
+          </li>
+        </ul>
+        
+  
+    <form class="text-right my-4">
+      <button text-light (click) = "newData()">New Todo</button>  
+    </form>
+</div>
+  
+  
